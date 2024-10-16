@@ -1,4 +1,4 @@
-#include <cs50.h>
+#include "cs50.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -16,8 +16,7 @@ typedef struct
 {
     int winner;
     int loser;
-}
-pair;
+} pair;
 
 // Array of candidates
 string candidates[MAX];
@@ -86,7 +85,6 @@ int main(int argc, string argv[])
             }
         }
 
-
         record_preferences(ranks);
 
         printf("\n");
@@ -104,7 +102,7 @@ bool vote(int rank, string name, int ranks[])
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (!strcmp(name, candidates[i])) //adding the candidates in ranks array then add it to prefrences
+        if (!strcmp(name, candidates[i])) // adding the candidates in ranks array then add it to prefrences
         {
             ranks[rank] = i;
             return true;
@@ -120,9 +118,8 @@ void record_preferences(int ranks[])
     {
         for (int i = j + 1; i < candidate_count; i++)
         {
-            preferences[ranks[j]][ranks[i]]++;  //taking the value from ranks array and store it in prefrences
+            preferences[ranks[j]][ranks[i]]++; // taking the value from ranks array and store it in prefrences
         }
-
     }
     for (int c = 0; c < candidate_count; c++)
     {
@@ -140,7 +137,7 @@ void record_preferences(int ranks[])
 void add_pairs(void)
 {
     pair_count = 0;
-    for (int i = 0; i < candidate_count; i++)  // adding pairs (winner and loser)
+    for (int i = 0; i < candidate_count; i++) // adding pairs (winner and loser)
     {
         for (int j = i + 1; j < candidate_count; j++)
         {
@@ -160,13 +157,11 @@ void add_pairs(void)
         printf("the winner: %i\nthe loser: %i\n", pairs[i].winner, pairs[i].loser);
     }
 
-
     return;
 }
 
-
 // Sort pairs in decreasing order by strength of victory
-void sort_pairs(void) //sorting the pairs decresingly
+void sort_pairs(void) // sorting the pairs decresingly
 {
     for (int i = 0; i < pair_count; i++)
     {
@@ -185,7 +180,7 @@ void sort_pairs(void) //sorting the pairs decresingly
 
     return;
 }
-bool rec(int winner, int loser)  //funtion to check if there's any cycle or not
+bool rec(int winner, int loser) // funtion to check if there's any cycle or not
 {
     if (loser == winner)
     {
@@ -207,7 +202,7 @@ bool rec(int winner, int loser)  //funtion to check if there's any cycle or not
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    for (int i = 0; i < pair_count; i++)  //lock pairs after checking there's no cycle
+    for (int i = 0; i < pair_count; i++) // lock pairs after checking there's no cycle
     {
         for (int j = 0; j < pair_count; j++)
         {
